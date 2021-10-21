@@ -1,41 +1,27 @@
+from typing import Optional
+
+
 class Human:
-    def __init__(self, name, age):
+    def __init__(self, name: str, cars: list[str]) -> None:
         self.name = name
-        self.age = age
+        self.cars = cars
+        self.current_car: Optional[str] = None
 
-print(f'Name: Jax')
-print(f'Age: 24')
-print(f'Name: Jack')
-print(f'Age: 30')
-print(f'Name: Suzuki')
-print(f'Vin number: 4G2F691CHR45236KT')
-print(f'Model: Suzuki Grand Vitara')
-print(f'Name: Toyota')
-print(f'Vin number: 7HLT8692L4D5VMF57')
-print(f'Model: Corolla')
-print(f'Name Mitsubishi')
-print(f'Vin number: 1C541PG7XXX1C7496')
-print(f'Model: Challenger')
-print(f'Name: Mercedes-Benz')
-print(f'Vin number: D4896S6GHT39568ET')
-print(f'Model: AMG GT R')
-print(f'Name: MINI')
-print(f'Vin number: 8J5F67L5478453LEC')
-print(f'Model: Cabrio')
-print(f'Name: Skoda')
-print(f'Vin number: 6867GT7NMC978RXZ8')
-print(f'Model: Kodiaq')
-print(f'Name: Lexus')
-print(f'Vin number: XC56KLD463589K6NE')
-print(f'Model: LC')
-print(f'Name: Citroen')
-print(f'Vin number: 2H7K9FGM67453XCBL')
-print(f'Model: Berlingo')
-print(f'Name: Opel')
-print(f'Vin number: 3J6456KL45CX4987V')
-print(f'Model: Astra')
-print(f'Name: Renault')
-print(f'Vin number: 9P4234SDR1K7B3U95')
-print(f'Model: Arkana')
-input("Name: Jax, Car: Lexus, Name: Jack, Car: Opel")
+    def set_current_car(self, car: str) -> None:
+        if car not in self.cars:
+            raise ValueError("No such car found {car}")
+        self.current_car = car
 
+def choose_a_car(human: Human) -> None:
+    selected_car = input(f"Please select a car from {human.cars}")
+    try:
+        human.set_current_car(selected_car)
+    except ValueError:
+        print("No such cars, try again!")
+        choose_a_car(human)
+
+human = Human("Michael", ["Tesla", "2HK6784LXG34H78R1", "Roadster)))"])
+human2 = Human("Gordon", ["Porsche", "9K7395CC185I7G9NB", "Taycan)))"])
+choose_a_car(human2)
+choose_a_car(human)
+print(human.current_car)
